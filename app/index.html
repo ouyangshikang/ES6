@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     function copy(obj){
+      //创建一个新对象
+      let newObj = {};
+      //返回keys数组，包含obj所有可枚举的自身属性名
+      let keys = Object.keys(obj),key=null;
+      for(let i =0;i<keys.length;i++){
+        key = keys[i];
+        //将obj所有属性复制到新对象
+        newObj[key] = obj[key];
+      }
+      return newObj;
+    }
+    let status = {
+      user: {},
+      token: '',
+      show:'true',
+      navbar:'',
+      userinfo: {
+        user_nicename: '',
+        mobile: '',
+        user_email: '',
+        sex: '',
+        signature: '',
+        user_url: ''
+      },
+      companyinfo: '',
+      //userinfo:'',
+      recordList: [],
+      message: [],
+      pending_number: 0,
+      indelivery_number: 0,
+      done_number: 0,
+      datetime:'',
+      pickerOptions2: {
+        shortcuts: [{
+          text: "最近一周", onClick: function (e) {
+            const t = new Date, a = new Date;
+            a.setTime(a.getTime() - 6048e5), e.$emit("pick", [a, t])
+          }
+        }, {
+          text: "最近一个月", onClick: function (e) {
+            const t = new Date, a = new Date;
+            a.setTime(a.getTime() - 2592e6), e.$emit("pick", [a, t])
+          }
+        }, {
+          text: "最近三个月", onClick: function (e) {
+            const t = new Date, a = new Date;
+            a.setTime(a.getTime() - 7776e6), e.$emit("pick", [a, t])
+          }
+        }]
+      },
+      btnSearch:false,
+      statistics:'',
+      /*** 站内消息***/
+      pageSize:10,
+      page:1,
+      currentPage:1,
+      total:0,
+      messageContent:[],
+      /*** 站内消息结束***/
+      /*****意见反馈开始*******/
+      feedback: {
+        feedbackInfo:'',
+        phone:''
+      },
+      version:[],
+      addAudit:[],
+
+      edition_order:'',
+      price_h:'',
+
+      /*****意见反馈结束*******/
+      /*****弹窗消息开始*******/
+      popupMessage:[],
+      /*****弹窗消息结束*******/
+      /*****修改手机号开始*******/
+      success:false,
+    }
+    state = copy(status);
+    console.log(state.userinfo)
+    </script>
+</body>
+</html>
