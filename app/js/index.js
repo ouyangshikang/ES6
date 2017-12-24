@@ -1,1 +1,1 @@
-import './class/regex'
+import './class/promise';
