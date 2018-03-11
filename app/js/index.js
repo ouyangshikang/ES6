@@ -1,1 +1,1 @@
-import './class/promise';
+import './class/number';
