@@ -61,144 +61,128 @@
 
 	'use strict';
 
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	{
-	    // Array.from()把一些伪数组或集合转化为真正的数组
-	    var obj = {
-	        '0': 'a',
-	        '1': 'b',
-	        '2': 'c',
-	        length: 3
-	    };
-	    var arrObj = Array.from(obj);
-	    console.log(arrObj);
+	  // 基本定义和生成实例,继承父类及覆盖
+	  var Song = function Song() {
+	    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '稻香';
+	    var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'https://www.zhoujielun.com';
 
-	    console.log(Array.from([1, 2, 3], function (item) {
-	        return item * 2; // [2, 4, 6]
-	    }));
-	}
+	    _classCallCheck(this, Song);
 
-	{
-	    // Array.of()把一组数据变量转化为数组类型
-	    var arr = Array.of(3, 4, 7, 9, 11);
-	    console.log(arr); // [3, 4, 7, 9, 11]
+	    this.name = name;
+	    this.url = url;
+	  };
+	  // 继承父类Song
 
-	    var empty = Array.of();
-	    console.log('empty', empty); // []
-	}
 
-	{
-	    // fill(value, [start, end)) 用指定值替换数组元素 
-	    console.log([1, 'a', undefined].fill(7)); // [7, 7, 7]
-	    console.log([1, 'a', undefined].fill(7, 1, 2)); // [1, 7, undefined]
-	}
+	  var SongChild = function (_Song) {
+	    _inherits(SongChild, _Song);
 
-	{
-	    var _arr = [1, 'a', 'b'];
+	    function SongChild() {
+	      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '周杰伦的稻香';
 
-	    for (var _i = 0; _i < _arr.length; _i++) {
-	        var value = _arr[_i];
-	        console.log('遍历数组元素值', value); // 1, 'a', 'b'
-	    }
-	    var _iteratorNormalCompletion = true;
-	    var _didIteratorError = false;
-	    var _iteratorError = undefined;
+	      _classCallCheck(this, SongChild);
 
-	    try {
-	        for (var _iterator = [1, 'a', 'b'].keys()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	            var index = _step.value;
+	      // 子类向父类传递参数,super一定要放在第一行
+	      var _this = _possibleConstructorReturn(this, (SongChild.__proto__ || Object.getPrototypeOf(SongChild)).call(this, name));
 
-	            console.log('这样遍历就变成数组索引了', index); // 0, 1, 2
-	        }
-	    } catch (err) {
-	        _didIteratorError = true;
-	        _iteratorError = err;
-	    } finally {
-	        try {
-	            if (!_iteratorNormalCompletion && _iterator.return) {
-	                _iterator.return();
-	            }
-	        } finally {
-	            if (_didIteratorError) {
-	                throw _iteratorError;
-	            }
-	        }
+	      _this.type = '中国风';
+	      return _this;
 	    }
 
-	    var _iteratorNormalCompletion2 = true;
-	    var _didIteratorError2 = false;
-	    var _iteratorError2 = undefined;
+	    return SongChild;
+	  }(Song);
 
-	    try {
-	        for (var _iterator2 = [1, 'a', 'b'].values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-	            var _value = _step2.value;
+	  var l_song = new SongChild('周杰伦的等你回家');
+	  console.log(l_song); // SongChild {name: "周杰伦的等你回家", url: “https://www.zhoujielun.com”, type: "中国风"}
+	}
 
-	            console.log('遍历数组元素值', _value); // 1, 'a', 'b'
-	        }
-	    } catch (err) {
-	        _didIteratorError2 = true;
-	        _iteratorError2 = err;
-	    } finally {
-	        try {
-	            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-	                _iterator2.return();
-	            }
-	        } finally {
-	            if (_didIteratorError2) {
-	                throw _iteratorError2;
-	            }
-	        }
+	{
+	  // getter, setter
+	  var _Song2 = function () {
+	    function _Song2() {
+	      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '稻香';
+
+	      _classCallCheck(this, _Song2);
+
+	      this.name = name;
 	    }
 
-	    var _iteratorNormalCompletion3 = true;
-	    var _didIteratorError3 = false;
-	    var _iteratorError3 = undefined;
+	    _createClass(_Song2, [{
+	      key: 'fullName',
+	      get: function get() {
+	        return '\u5468\u6770\u4F26\u7684' + this.name;
+	      },
+	      set: function set(value) {
+	        this.name = value;
+	      }
+	    }]);
 
-	    try {
-	        for (var _iterator3 = [1, 'a', 'b'].entries()[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-	            var _step3$value = _slicedToArray(_step3.value, 2),
-	                _index = _step3$value[0],
-	                _value2 = _step3$value[1];
+	    return _Song2;
+	  }();
 
-	            console.log('遍历数组索引及元素值', _index, _value2); // 0  1, 1 a, 2 b
-	        }
-	    } catch (err) {
-	        _didIteratorError3 = true;
-	        _iteratorError3 = err;
-	    } finally {
-	        try {
-	            if (!_iteratorNormalCompletion3 && _iterator3.return) {
-	                _iterator3.return();
-	            }
-	        } finally {
-	            if (_didIteratorError3) {
-	                throw _iteratorError3;
-	            }
-	        }
+	  var singerSong = new _Song2();
+	  console.log('getter', singerSong.fullName); // getter 周杰伦的稻香
+
+	  console.log('setter', singerSong.fullName = '周杰伦的等你下课'); // setter 周杰伦的等你下课
+	}
+
+	{
+	  // 静态方法 static
+	  var _Song3 = function () {
+	    function _Song3() {
+	      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '稻香';
+
+	      _classCallCheck(this, _Song3);
+
+	      this.name = name;
 	    }
+
+	    _createClass(_Song3, null, [{
+	      key: 'singSongs',
+	      value: function singSongs() {
+	        console.log('周杰伦在唱歌');
+	      }
+	    }]);
+
+	    return _Song3;
+	  }();
+
+	  _Song3.singSongs(); // 周杰伦在唱歌
 	}
 
 	{
-	    // copyWithin(target, [start, end))   将指定位置的元素复制(覆盖)到从target位置开始的数据，返回当前数组
-	    console.log([1, 2, 3, 4, 5].copyWithin(0, 3, 4)); // [4, 2, 3, 4, 5]
-	}
+	  // 静态属性 
+	  var _Song4 = function () {
+	    function _Song4() {
+	      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '稻香';
 
-	{
-	    // find() 找到符合条件的第一个数组元素
-	    console.log([1, 2, 3, 4, 5, 6].find(function (item) {
-	        return item > 3; // 4
-	    }));
-	    // findIndex() 找到符合条件的第一个数组元素的索引
-	    console.log([1, 2, 3, 4, 5, 6].findIndex(function (item) {
-	        return item > 3; // 3
-	    }));
-	}
+	      _classCallCheck(this, _Song4);
 
-	{
-	    // includes(value, [fromIndex]) 数组中是否包含某个元素
-	    console.log([1, 2, NaN].includes(1)); // true
-	    console.log([1, 2, NaN].includes(NaN)); // true
+	      this.name = name;
+	    }
+
+	    _createClass(_Song4, null, [{
+	      key: 'singSongs',
+	      value: function singSongs() {
+	        console.log('周杰伦在唱歌');
+	      }
+	    }]);
+
+	    return _Song4;
+	  }();
+
+	  _Song4.type = '中国风';
+
+	  console.log(_Song4.type); // 中国风
 	}
 
 /***/ })

@@ -1,1 +1,1 @@
-import './class/array';
+import './class/class';
