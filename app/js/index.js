@@ -1,1 +1,1 @@
-import './class/number';
+import './class/array';
