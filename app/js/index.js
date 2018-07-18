@@ -1,1 +1,1 @@
-import './class/class';
+import './class/rest';
